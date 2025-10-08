@@ -160,7 +160,7 @@ class AdaNS_sampler(object):
 		return indices
 
 
-	def run_sampling(self, evaluator, num_samples, n_iter, minimize=False, alpha_max=1.0, early_stopping=np.Infinity, 
+	def run_sampling(self, evaluator, num_samples, n_iter, minimize=False, alpha_max=1.0, early_stopping=np.inf, 
 		save_path='./sampling', n_parallel=1, plot_contour=False, executor=mp.Pool, verbose=True, init_samples=None):
 		'''
 		Function to maximize given black-box function and save results to ./sampling/
@@ -677,7 +677,7 @@ class Gaussian_sampler(AdaNS_sampler):
 					distance_mat[i][j] = np.sum((samples[i]-samples[j])**2)
 					distance_mat[j][i] = np.sum((samples[i]-samples[j])**2)
 			for i in range(len(scores)):
-				distance_mat[i,i] = np.Infinity
+				distance_mat[i,i] = np.inf
 			pair_each_point = np.zeros(len(scores)).astype(np.int32)
 			id0 = 0
 			while(len(pairs)<num_pairs):
@@ -936,7 +936,7 @@ class Zoom_sampler(AdaNS_sampler):
 			self.split_region(max_id, ids)
 
 
-	def run_sampling(self, evaluator, num_samples, n_iter, minimize=False, alpha_max=1.0, early_stopping=np.Infinity, 
+	def run_sampling(self, evaluator, num_samples, n_iter, minimize=False, alpha_max=1.0, early_stopping=np.inf, 
 		save_path='./sampling', n_parallel=1, plot_contour=False, executor=mp.Pool, verbose=True, init_samples=None):
 		'''
 		Function to maximize given black-box function and save results to ./sampling/
