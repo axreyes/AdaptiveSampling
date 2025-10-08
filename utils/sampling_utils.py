@@ -563,7 +563,7 @@ class Gaussian_sampler(AdaNS_sampler):
 				while len(local_samples) < local_sampling:
 					count = local_sampling - len(local_samples)
 					new_samples  = gaussian_mix.sample(n_samples=count)[0]
-					new_samples  = np.clip(local_samples, self.boundaries[:,0], self.boundaries[:,1])
+					new_samples  = np.clip(new_samples, self.boundaries[:,0], self.boundaries[:,1])
 					
 					constraint_check = np.asarray(list(map(self.constraint_fn, new_samples)))
 					new_samples = new_samples[np.where(constraint_check)[0]]
